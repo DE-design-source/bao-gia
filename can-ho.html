@@ -112,6 +112,7 @@
   .nav-drop { position:relative; }
   .nav-drop-menu { position:absolute; top:100%; left:-16px; padding-top:12px; opacity:0; visibility:hidden; transform:translateY(6px); transition:all .18s ease; z-index:60; }
   .nav-drop:hover .nav-drop-menu { opacity:1; visibility:visible; transform:translateY(0); }
+  .nav-drop.open .nav-drop-menu { opacity:1; visibility:visible; transform:translateY(0); }
   .nav-drop-menu .nav-drop-card { background:#fff; border-radius:12px; box-shadow:0 22px 46px -18px rgba(0,0,0,.5); padding:8px; min-width:210px; }
   .nav-drop-menu a { display:block; padding:11px 14px; border-radius:8px; color:#193544; text-decoration:none; font-size:14px; font-weight:600; white-space:nowrap; }
   .nav-drop-menu a:hover { background:#f2ece1; color:#b3925e; }
@@ -1360,13 +1361,23 @@
       });
       return out;
     }
+    // Sửa link cho các dự án mà tên file ảnh khác slug trang thật (thi-cong-xay-dung là gallery, không có link trang)
+    var XD_HREF_FIX = {
+      'ricky-villa':'rickys-villa.html', 'ricky-s-villa':'rickys-villa.html',
+      'h-h-townhouse-thanh-my-loi':'hh-townhouse-thanh-my-loi.html',
+      'villa-tay-ninh-hinh-anh-thuc-te':'villa-tay-ninh.html',
+      'binh-tan-townhouse-hinh-anh-thuc-te':'thi-cong-kien-truc-noi-that-binh-tan-townhouse.html',
+      'sofitel-villa':'sofitel-villa-hinh-anh-thuc-te.html',
+      'elegant-villa-hinh-anh-thuc-te':'thi-cong-kien-truc-noi-that-biet-thu-elegant-villa.html'
+    };
+    var XD_SKIP = { 'can-ho-dich-vu-kimmy-house':1 };   // trang khong ton tai
     function parseXayDung(html){
       var doc=new DOMParser().parseFromString(html,'text/html'), map={}, order=[];
       Array.prototype.forEach.call(doc.querySelectorAll('a[href*="upload/sanpham/large/"]'), function(a){
         var m=(a.getAttribute('href')||'').match(/large\/([a-z0-9\-]+?)(?:-\d+)?\.(?:jpg|jpeg|png)/i); if(!m) return;
-        var sl=m[1], title=(a.getAttribute('title')||a.getAttribute('alt')||'').trim();
-        if(!title || map[sl]) return;
-        map[sl]={ name:title, url:SITE+sl+'.html', img:SITE+'upload/sanpham/large/'+sl+'.jpg', cat:'xaydung' };
+        var sl=m[1]; if(XD_SKIP[sl] || map[sl]) return;
+        var title=(a.getAttribute('title')||a.getAttribute('alt')||'').trim(); if(!title) return;
+        map[sl]={ name:title, url:SITE+(XD_HREF_FIX[sl]||(sl+'.html')), img:SITE+'upload/sanpham/large/'+sl+'.jpg', cat:'xaydung' };
         order.push(sl);
       });
       return order.map(function(k){ return map[k]; });
@@ -1666,5 +1677,20 @@
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+<script>
+  /* Dropdown "Bảng giá": desktop mở bằng hover; thiết bị cảm ứng mở bằng chạm (lần chạm 1 mở menu) */
+  (function(){
+    var touch = window.matchMedia && window.matchMedia('(hover: none)').matches;
+    if(!touch) return;
+    var trig = document.querySelector('.nav-drop > a'); if(!trig) return;
+    var drop = trig.parentNode;
+    trig.addEventListener('click', function(e){
+      if(!drop.classList.contains('open')){ e.preventDefault(); drop.classList.add('open'); }
+    });
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('.nav-drop')) drop.classList.remove('open');
+    });
+  })();
+  </script>
 </body>
 </html>
