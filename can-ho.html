@@ -1290,20 +1290,7 @@
   var SITE = 'https://decoxdesign.com/';
   var CAT_LABEL = { xaydung:'Xây dựng', noithat:'Nội thất' };
 
-  // Danh sách dự phòng (hiển thị nếu trình duyệt chặn fetch nguồn web — vd chạy khác domain / CORS).
-  // Khi trang nằm cùng domain decoxdesign.com, phần fetch bên dưới sẽ tự thay bằng dữ liệu web mới nhất.
-  var FALLBACK_PROJECTS = [
-    { name:'Townhouse Phú Mỹ Hưng', cats:['xaydung'], img:IMGBASE+'townhouse-phu-my-hung.jpg', url:SITE+'townhouse-phu-my-hung.html' },
-    { name:'Thủ Đức Townhouse', cats:['xaydung'], img:IMGBASE+'thu-duc-townhouse-hinh-anh-thuc-te.jpg', url:SITE+'thu-duc-townhouse-hinh-anh-thuc-te.html' },
-    { name:'Bình Tân Townhouse', cats:['xaydung'], img:IMGBASE+'binh-tan-townhouse-hinh-anh-thuc-te.jpg', url:SITE+'thi-cong-kien-truc-noi-that-binh-tan-townhouse.html' },
-    { name:'Ricky Villa', cats:['xaydung'], img:IMGBASE+'ricky-villa.jpg', url:SITE+'rickys-villa.html' },
-    { name:'Villa Tây Ninh', cats:['xaydung'], img:IMGBASE+'villa-tay-ninh-hinh-anh-thuc-te.jpg', url:SITE+'villa-tay-ninh.html' },
-    { name:'Sofitel Villa', cats:['xaydung'], img:IMGBASE+'sofitel-villa-hinh-anh-thuc-te.jpg', url:SITE+'sofitel-villa-hinh-anh-thuc-te.html' },
-    { name:'Crystal Galleria', cats:['noithat'], img:IMGBASE+'crystal-galleria.jpg', url:SITE+'crystal-galleria.html' },
-    { name:'La Maison Douce', cats:['noithat'], img:IMGBASE+'la-maison-douce.jpg', url:SITE+'la-maison-douce.html' },
-    { name:'Monrei Saigon', cats:['noithat'], img:IMGBASE+'monrei-saigon.jpg', url:SITE+'monrei-saigon.html' }
-  ];
-  var PROJECTS = FALLBACK_PROJECTS.slice();
+  var PROJECTS = [];   // chỉ lấy dự án động từ website decoxdesign.com (không dùng list cũ)
 
   function chipStyle(active){
     return active
