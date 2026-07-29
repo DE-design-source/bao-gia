@@ -1554,7 +1554,7 @@
   // Xây dựng: trích từ gallery ảnh trong thi-cong-xay-dung (tên dự án lấy từ title ảnh).
   (function(){
     function abs(u){ try{ return new URL(u, SITE).href; }catch(e){ return u; } }
-    function keyOf(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+    function keyOf(s){ return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[đĐ]/g,'d').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
     function parseNoiThat(html){
       var doc=new DOMParser().parseFromString(html,'text/html'), out=[];
       Array.prototype.forEach.call(doc.querySelectorAll('li.item a[href], .item a[href]'), function(a){
@@ -1588,10 +1588,12 @@
       });
       return order.map(function(k){ return map[k]; });
     }
+    var EXCLUDE={'ha-noi-westlake-villa':1,'townhouse-phu-my-hung':1,'ricky-villa':1};   // an 3 du an theo yeu cau
     function merge(lists){
       var by={}, order=[];
       lists.forEach(function(arr){ (arr||[]).forEach(function(p){
         var k=keyOf(p.name);
+        if(EXCLUDE[k]) return;
         if(!by[k]){ by[k]={ name:p.name, url:p.url, img:p.img, cats:[] }; order.push(k); }
         if(by[k].cats.indexOf(p.cat)<0) by[k].cats.push(p.cat);
         if(p.cat==='noithat'){ by[k].url=p.url; by[k].img=p.img; }  // li.item = href/img chuẩn, ưu tiên
