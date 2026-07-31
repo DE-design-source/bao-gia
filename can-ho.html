@@ -866,13 +866,8 @@
     <div style="max-width:1200px; margin:0 auto; padding:20px 24px 84px;">
       <div style="text-align:center; margin-bottom:14px;"><span style="font-size:13px; font-weight:700; letter-spacing:2px; color:#c9a15c;">CÔNG TRÌNH ĐÃ BÀN GIAO</span></div>
       <h2 class="section-h2" style="font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:40px; font-weight:700; text-align:center; margin-bottom:14px;">Một số dự án tiêu biểu của Decox</h2>
-      <p style="text-align:center; color:#6a6355; max-width:560px; margin:0 auto 32px; font-size:16px;">Các công trình Decox đã thiết kế và thi công thực&nbsp;tế, cập nhật trực tiếp từ website. Bấm để xem chi tiết từng dự án.</p>
+      <p style="text-align:center; color:#6a6355; max-width:560px; margin:0 auto 32px; font-size:16px;">Các công trình căn hộ Decox đã thi công &amp; bàn giao thực&nbsp;tế, cập nhật trực tiếp từ website. Bấm để xem chi tiết từng dự án.</p>
 
-      <div style="display:flex; justify-content:center; gap:10px; margin-bottom:36px; flex-wrap:wrap;">
-        <button class="filter-chip" data-filter="all">Tất cả</button>
-        <button class="filter-chip" data-filter="xaydung">Xây dựng</button>
-        <button class="filter-chip" data-filter="noithat">Nội thất</button>
-      </div>
 
       <div id="projectsGrid" class="projects-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;"></div>
 
@@ -1378,12 +1373,10 @@
       }); });
       return order.map(function(k){ return by[k]; });
     }
-    Promise.allSettled([
-      fetch(SITE+'thi-cong-xay-dung',{mode:'cors'}).then(function(r){ return r.ok?r.text():''; }).then(parseXayDung),
-      fetch(SITE+'thi-cong-noi-that',{mode:'cors'}).then(function(r){ return r.ok?r.text():''; }).then(parseNoiThat)
-    ]).then(function(res){
-      var xd=(res[0]&&res[0].value)||[], nt=(res[1]&&res[1].value)||[];
-      var merged=merge([xd, nt]);
+    // Trang căn hộ: chỉ lấy Nội thất (bỏ Xây dựng), loại công trình villa/biệt thự/nhà phố — chỉ giữ căn hộ
+    var NOT_CANHO=/villa|bi[eệ]t\s*th[uự]|townhouse|nh[aà]\s*ph[oố]/i;
+    fetch(SITE+'thi-cong-noi-that',{mode:'cors'}).then(function(r){ return r.ok?r.text():''; }).then(parseNoiThat).then(function(nt){
+      var merged=merge([nt]).filter(function(p){ return !NOT_CANHO.test(p.name); });
       if(merged.length){ PROJECTS=merged; renderProjects(); }
     });
   })();
