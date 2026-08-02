@@ -1588,6 +1588,13 @@
       return order.map(function(k){ return map[k]; });
     }
     var EXCLUDE={'ha-noi-westlake-villa':1,'townhouse-phu-my-hung':1,'ricky-villa':1};   // an 3 du an theo yeu cau
+    function interleave(arr){
+      var xd=[], nt=[];
+      arr.forEach(function(p){ ((p.cats||[]).indexOf('noithat')>-1 ? nt : xd).push(p); });
+      var out=[], i=0, j=0;
+      while(i<nt.length || j<xd.length){ if(i<nt.length) out.push(nt[i++]); if(j<xd.length) out.push(xd[j++]); }
+      return out;
+    }
     function merge(lists){
       var by={}, order=[];
       lists.forEach(function(arr){ (arr||[]).forEach(function(p){
@@ -1604,7 +1611,7 @@
       fetch(SITE+'thi-cong-noi-that',{mode:'cors'}).then(function(r){ return r.ok?r.text():''; }).then(parseNoiThat)
     ]).then(function(res){
       var xd=(res[0]&&res[0].value)||[], nt=(res[1]&&res[1].value)||[];
-      var merged=merge([xd, nt]);
+      var merged=interleave(merge([xd, nt]));
       if(merged.length){ PROJECTS=merged; renderProjects(); }
     });
   })();
