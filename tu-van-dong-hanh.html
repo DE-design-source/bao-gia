@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tư vấn đồng hành · Giải pháp tư vấn &amp; đồng hành toàn diện cho mọi công trình | Decox</title>
+<meta name="description" content="Quy trình tư vấn Decox vận hành theo mô hình Đồng hành &amp; Định hướng: lập kế hoạch tổng thể, xác định mục tiêu, nhiệm vụ thiết kế, phân tích chi phí đầu tư và thẩm định báo giá thi công.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:86px; }
+  body { font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; color:#2b2620; background:#ffffff; -webkit-font-smoothing:antialiased; }
+  ::selection { background:#b3925e; color:#fff; }
+  input, button, textarea { font-family:inherit; }
+  @keyframes floatIn { from { opacity:0; transform:translateY(16px);} to {opacity:1; transform:translateY(0);} }
+  @keyframes pulseGold { 0%,100%{ box-shadow:0 0 0 0 rgba(179,146,94,.5);} 50%{ box-shadow:0 0 0 10px rgba(179,146,94,0);} }
+
+  /* ---- Floating hotline tooltip ---- */
+  .hotline-wrap { position:relative; display:flex; align-items:center; }
+  .hotline-tip {
+    position:absolute; right:70px; top:50%; transform:translateY(-50%) scale(.9);
+    white-space:nowrap; background:#fff; color:#193544; font-weight:800; font-size:18px;
+    letter-spacing:.5px; padding:12px 22px; border-radius:999px;
+    box-shadow:0 8px 24px rgba(25,53,68,.22); pointer-events:none;
+    opacity:0; visibility:hidden; transition:opacity .25s ease, transform .25s ease;
+  }
+  .hotline-wrap:hover .hotline-tip { opacity:1; visibility:visible; transform:translateY(-50%) scale(1); }
+  .hotline-tip.tip-open { opacity:1; visibility:visible; transform:translateY(-50%) scale(1); }
+
+  /* ---- Nav dropdown (giống trang báo giá) ---- */
+  .nav-drop { position:relative; }
+  .nav-drop-menu { position:absolute; top:100%; left:-16px; padding-top:12px; opacity:0; visibility:hidden; transform:translateY(6px); transition:all .18s ease; z-index:60; }
+  .nav-drop:hover .nav-drop-menu { opacity:1; visibility:visible; transform:translateY(0); }
+  .nav-drop.open .nav-drop-menu { opacity:1; visibility:visible; transform:translateY(0); }
+  .nav-drop-menu .nav-drop-card { background:#fff; border-radius:12px; box-shadow:0 22px 46px -18px rgba(0,0,0,.5); padding:8px; min-width:210px; }
+  .nav-drop-menu a { display:block; padding:11px 14px; border-radius:8px; color:#193544; text-decoration:none; font-size:14px; font-weight:600; white-space:nowrap; }
+  .nav-drop-menu a:hover { background:#f2ece1; color:#b3925e; }
+  .nav-drop-menu a.on { color:#b3925e; }
+
+  /* ---- Typography helpers ---- */
+  .eyebrow { display:inline-block; font-size:13px; font-weight:700; letter-spacing:2px; color:#c9a15c; text-transform:uppercase; }
+  .section-h2 { font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:40px; font-weight:700; line-height:1.18; letter-spacing:-.4px; }
+  .lead { font-size:17px; line-height:1.85; color:#5a5347; }
+  .rule { width:56px; height:3px; background:#b3925e; border-radius:2px; }
+
+  /* ---- Reveal on scroll ---- */
+  .rv { opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .rv { opacity:1 !important; transform:none !important; } html{ scroll-behavior:auto; } }
+
+  /* ---- Pillars ---- */
+  .pillar { position:relative; padding:26px 24px 26px 0; }
+  .pillar + .pillar { border-left:1px solid rgba(255,255,255,.14); padding-left:28px; }
+  .pillar h3 { font-size:16px; font-weight:700; color:#fff; margin:14px 0 7px; }
+  .pillar p { font-size:13.5px; line-height:1.6; color:#a2b3bc; }
+  .pillar .ic { width:40px; height:40px; border-radius:12px; background:rgba(201,161,92,.16); color:#d9bd93; display:flex; align-items:center; justify-content:center; }
+
+  /* ---- Overview strip (5 bước) ---- */
+  .ov-card { display:block; text-decoration:none; color:inherit; background:#fff; border:1px solid rgba(25,53,68,.12); border-radius:16px; padding:24px 22px 22px; transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease; }
+  .ov-card:hover { transform:translateY(-6px); box-shadow:0 24px 44px -24px rgba(22,19,15,.5); border-color:#d9c9ae; }
+  .ov-card .n { font-size:13px; font-weight:800; letter-spacing:1.5px; color:#c9a15c; }
+  .ov-card h3 { font-size:16.5px; font-weight:700; color:#193544; line-height:1.35; margin:10px 0 8px; }
+  .ov-card p { font-size:13.5px; line-height:1.6; color:#6a6355; }
+
+  /* ---- Steps ---- */
+  .steps-wrap { display:grid; grid-template-columns:250px 1fr; gap:56px; align-items:start; }
+  .steps-nav { position:sticky; top:104px; }
+  .steps-nav .t { font-size:12px; font-weight:700; letter-spacing:2px; color:#9a9186; margin-bottom:18px; }
+  .steps-nav a { display:flex; gap:12px; align-items:flex-start; text-decoration:none; padding:11px 0 11px 14px; border-left:2px solid #e6ddcd; color:#7a7267; font-size:14px; font-weight:600; line-height:1.4; transition:color .22s ease, border-color .22s ease; }
+  .steps-nav a i { font-style:normal; font-size:12px; font-weight:800; letter-spacing:1px; color:#c3b9a7; transition:color .22s ease; }
+  .steps-nav a:hover { color:#193544; }
+  .steps-nav a.on { color:#193544; border-color:#b3925e; }
+  .steps-nav a.on i { color:#b3925e; }
+
+  .step { padding:0 0 64px; }
+  .step + .step { border-top:1px solid #ece5d8; padding-top:56px; }
+  .step-head { display:flex; align-items:flex-start; gap:22px; margin-bottom:26px; }
+  .step-num { font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:56px; font-weight:700; line-height:.9; color:#e8dfcd; letter-spacing:-2px; flex-shrink:0; }
+  .step-kicker { font-size:12px; font-weight:800; letter-spacing:2px; color:#c9a15c; }
+  .step-head h3 { font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:29px; font-weight:700; color:#193544; line-height:1.25; margin-top:8px; letter-spacing:-.3px; }
+  .goal { background:#f6f2ea; border-left:3px solid #b3925e; border-radius:0 14px 14px 0; padding:20px 24px; margin-bottom:30px; }
+  .goal b { display:block; font-size:12px; font-weight:800; letter-spacing:1.6px; color:#8a6f43; margin-bottom:7px; }
+  .goal p { font-size:15.5px; line-height:1.7; color:#3f3a31; }
+  .blk + .blk { margin-top:26px; }
+  .blk h4 { font-size:17px; font-weight:700; color:#193544; margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+  .blk h4:before { content:''; width:7px; height:7px; border-radius:50%; background:#b3925e; flex-shrink:0; }
+  .blk ul { list-style:none; display:flex; flex-direction:column; gap:11px; padding-left:17px; }
+  .blk li { position:relative; font-size:15px; line-height:1.75; color:#5a5347; padding-left:20px; }
+  .blk li:before { content:''; position:absolute; left:0; top:11px; width:8px; height:1.5px; background:#c9b291; }
+  .blk li b, .blk li strong { color:#193544; font-weight:700; }
+
+  /* Flow chips (phân kỳ giai đoạn) */
+  .flow { display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin:4px 0 4px; }
+  .flow span { background:#fff; border:1px solid #e2d8c6; border-radius:999px; padding:9px 16px; font-size:13px; font-weight:700; color:#193544; white-space:nowrap; }
+  .flow i { font-style:normal; color:#c9a15c; font-weight:700; }
+
+  /* Ngân sách 3 phương án */
+  .budget { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px; }
+  .budget div { border:1px solid #e6ddcd; border-radius:14px; padding:16px 18px; background:#fff; }
+  .budget .k { font-size:12px; font-weight:800; letter-spacing:1.2px; color:#c9a15c; margin-bottom:6px; }
+  .budget .v { font-size:14px; color:#5a5347; line-height:1.55; }
+
+  /* ---- Cam kết ---- */
+  .commit-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .commit-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.13); border-radius:18px; padding:32px 28px; transition:background .3s ease, transform .3s ease; }
+  .commit-card:hover { background:rgba(255,255,255,.09); transform:translateY(-5px); }
+  .commit-card .ic { width:46px; height:46px; border-radius:14px; background:rgba(201,161,92,.18); color:#d9bd93; display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+  .commit-card h3 { font-size:19px; font-weight:700; color:#fff; margin-bottom:11px; }
+  .commit-card p { font-size:14.5px; line-height:1.7; color:#a9bcc5; }
+
+  /* ---- Projects ---- */
+  .projects-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .proj-card { display:block; text-decoration:none; color:inherit; background:#fff; border-radius:18px; overflow:hidden; border:1px solid rgba(14,59,49,.1); transition:transform .32s cubic-bezier(.2,.7,.2,1), box-shadow .32s ease; }
+  .proj-card:hover { transform:translateY(-6px); box-shadow:0 26px 50px -24px rgba(22,19,15,.55); }
+  .proj-card img { transition:transform .55s ease; }
+  .proj-card:hover img { transform:scale(1.05); }
+
+  /* ---- Responsive ---- */
+  @media (max-width:1000px){
+    .steps-wrap { grid-template-columns:1fr; gap:0; }
+    .steps-nav { display:none; }
+  }
+  @media (max-width:960px){
+    .hero-h1 { font-size:38px !important; }
+    .pillars { grid-template-columns:repeat(2,1fr) !important; }
+    .pillar { padding:22px 20px !important; border-left:none !important; }
+    .pillar + .pillar { border-left:none !important; padding-left:20px !important; }
+    .ov-grid, .commit-grid, .projects-grid, .budget { grid-template-columns:1fr !important; }
+    .intro-grid, .form-grid, .consult-grid, .quote-grid { grid-template-columns:1fr !important; }
+    .section-h2 { font-size:30px !important; }
+    .step-head h3 { font-size:24px !important; }
+    .step-num { font-size:44px !important; }
+  }
+  @media (max-width:960px){
+    .stat-badge { position:static !important; max-width:none !important; margin-top:18px; border-radius:16px; }
+  }
+  @media (max-width:640px){
+    .main-nav, .header-phone { display:none !important; }
+    .pillars { grid-template-columns:1fr !important; }
+    .step-head { gap:14px !important; }
+    .goal { border-radius:0 12px 12px 0; padding:17px 18px; }
+  }
+</style>
+</head>
+<body>
+<div style="max-width:100vw; overflow-x:hidden;">
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="decoxLogo" viewBox="0 0 260 55"><style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:url(#SVGID_5_);}
+	.st2{fill:#002430;}
+	.st3{fill:#231F20;}
+	.st4{fill:url(#SVGID_6_);}
+	.st5{fill:#00273D;}
+	.st6{fill:url(#SVGID_7_);}
+	.st7{fill:#FFBC00;}
+	.st8{fill:#FBB03B;}
+	.st9{fill:#F7931E;}
+	.st10{fill:url(#SVGID_8_);}
+	.st11{fill:#0E222D;}
+	.st12{fill:#F6921E;}
+	.st13{fill:#173645;}
+	.st14{fill:none;}
+	.st15{fill:#AD5C1A;}
+	.st16{fill:url(#SVGID_9_);}
+	.st17{fill:url(#SVGID_10_);}
+	.st18{fill:url(#SVGID_11_);}
+	.st19{fill:url(#SVGID_12_);}
+	.st20{fill:#E3E4E5;}
+	.st21{fill:#D42E5C;}
+	.st22{fill:url(#SVGID_13_);}
+	.st23{fill:url(#SVGID_14_);}
+	.st24{fill:url(#SVGID_15_);}
+	.st25{fill:url(#SVGID_16_);}
+	.st26{fill:url(#SVGID_17_);}
+	.st27{fill:url(#SVGID_18_);}
+	.st28{fill:url(#SVGID_19_);}
+	.st29{fill:url(#SVGID_20_);}
+	.st30{fill:url(#SVGID_21_);}
+	.st31{fill:url(#SVGID_22_);}
+	.st32{fill:url(#SVGID_23_);}
+	.st33{fill:url(#SVGID_24_);}
+	.st34{fill:#00273C;}
+	.st35{fill:#C7B299;}
+	.st36{fill:#0E233B;}
+	.st37{fill:#1A2222;}
+	.st38{fill:url(#SVGID_29_);}
+	.st39{fill:url(#SVGID_30_);}
+	.st40{fill:url(#SVGID_31_);}
+	.st41{fill:url(#SVGID_32_);}
+	.st42{fill:url(#SVGID_33_);}
+	.st43{fill:url(#SVGID_34_);}
+	.st44{fill:url(#SVGID_35_);}
+	.st45{fill:url(#SVGID_36_);}
+	.st46{fill:url(#SVGID_37_);}
+	.st47{fill:url(#SVGID_38_);}
+	.st48{fill:url(#SVGID_39_);}
+	.st49{fill:url(#SVGID_40_);}
+	.st50{fill:url(#SVGID_41_);}
+	.st51{fill:url(#SVGID_42_);}
+	.st52{fill:url(#SVGID_43_);}
+	.st53{fill:url(#SVGID_44_);}
+	.st54{fill:url(#SVGID_45_);}
+	.st55{fill:url(#SVGID_46_);}
+	.st56{fill:url(#SVGID_47_);}
+	.st57{fill:url(#SVGID_48_);}
+	.st58{fill:url(#SVGID_49_);}
+	.st59{fill:url(#SVGID_50_);}
+	.st60{fill:url(#SVGID_51_);}
+	.st61{fill:url(#SVGID_52_);}
+	.st62{fill:url(#SVGID_53_);}
+	.st63{fill:url(#SVGID_54_);}
+	.st64{fill:url(#SVGID_55_);}
+	.st65{fill:url(#SVGID_56_);}
+	.st66{fill:url(#SVGID_57_);}
+	.st67{fill:url(#SVGID_58_);}
+	.st68{fill:url(#SVGID_59_);}
+	.st69{fill:url(#SVGID_60_);}
+	.st70{fill:url(#SVGID_61_);}
+	.st71{fill:url(#SVGID_62_);}
+	.st72{fill:url(#SVGID_63_);}
+	.st73{fill:url(#SVGID_64_);}
+	.st74{fill:url(#SVGID_65_);}
+	.st75{fill:url(#SVGID_66_);}
+	.st76{fill:url(#SVGID_67_);}
+	.st77{fill:url(#SVGID_68_);}
+	.st78{fill:url(#SVGID_69_);}
+	.st79{fill:url(#SVGID_70_);}
+	.st80{fill:url(#SVGID_71_);}
+	.st81{fill:url(#SVGID_72_);}
+	.st82{fill:url(#SVGID_73_);}
+	.st83{fill:url(#SVGID_74_);}
+	.st84{fill:url(#SVGID_75_);}
+	.st85{fill:url(#SVGID_76_);}
+	.st86{fill:url(#SVGID_77_);}
+	.st87{fill:url(#SVGID_78_);}
+	.st88{fill:url(#SVGID_79_);}
+	.st89{fill:url(#SVGID_80_);}
+	.st90{fill:url(#SVGID_81_);}
+	.st91{fill:url(#SVGID_82_);}
+	.st92{fill:url(#SVGID_83_);}
+	.st93{fill:url(#SVGID_84_);}
+	.st94{fill:url(#SVGID_85_);}
+	.st95{fill:url(#SVGID_86_);}
+	.st96{fill:url(#SVGID_87_);}
+	.st97{fill:url(#SVGID_88_);}
+	.st98{fill:url(#SVGID_89_);}
+	.st99{fill:url(#SVGID_90_);}
+	.st100{fill:url(#SVGID_91_);}
+	.st101{fill:url(#SVGID_92_);}
+	.st102{fill:url(#SVGID_93_);}
+	.st103{fill:url(#SVGID_94_);}
+	.st104{fill:url(#SVGID_95_);}
+	.st105{fill:url(#SVGID_96_);}
+	.st106{fill:url(#SVGID_97_);}
+	.st107{fill:url(#SVGID_98_);}
+	.st108{fill:url(#SVGID_99_);}
+	.st109{fill:url(#SVGID_100_);}
+	.st110{fill:url(#SVGID_101_);}
+	.st111{fill:url(#SVGID_102_);}
+	.st112{fill:url(#SVGID_103_);}
+	.st113{fill:url(#SVGID_104_);}
+	.st114{fill:url(#SVGID_105_);}
+	.st115{fill:url(#SVGID_106_);}
+	.st116{fill:url(#SVGID_107_);}
+	.st117{fill:url(#SVGID_108_);}
+	.st118{fill:url(#SVGID_109_);}
+	.st119{fill:url(#SVGID_110_);}
+	.st120{fill:url(#SVGID_111_);}
+	.st121{fill:url(#SVGID_112_);}
+	.st122{fill:url(#SVGID_113_);}
+	.st123{fill:url(#SVGID_114_);}
+	.st124{fill:url(#SVGID_115_);}
+	.st125{fill:url(#SVGID_116_);}
+	.st126{fill:url(#SVGID_117_);}
+	.st127{fill:url(#SVGID_118_);}
+	.st128{fill:url(#SVGID_119_);}
+	.st129{fill:url(#SVGID_120_);}
+	.st130{fill:url(#SVGID_121_);}
+	.st131{fill:url(#SVGID_122_);}
+	.st132{fill:url(#SVGID_123_);}
+	.st133{fill:url(#SVGID_124_);}
+	.st134{fill:url(#SVGID_125_);}
+	.st135{fill:url(#SVGID_126_);}
+	.st136{fill:url(#SVGID_127_);}
+	.st137{fill:url(#SVGID_128_);}
+	.st138{fill:url(#SVGID_131_);}
+	.st139{fill:url(#SVGID_132_);}
+	.st140{fill:url(#SVGID_133_);}
+	.st141{fill:url(#SVGID_134_);}
+	.st142{fill:url(#SVGID_135_);}
+	.st143{fill:url(#SVGID_136_);}
+	.st144{fill:url(#SVGID_137_);}
+	.st145{fill:url(#SVGID_138_);}
+	.st146{fill:url(#SVGID_139_);}
+	.st147{fill:url(#SVGID_140_);}
+	.st148{fill:url(#SVGID_141_);}
+	.st149{fill:#422100;}
+	.st150{fill:#030000;}
+	.st151{fill:#FFFFFF;stroke:url(#SVGID_142_);stroke-miterlimit:10;}
+	.st152{fill:url(#SVGID_143_);}
+	.st153{fill:url(#SVGID_144_);}
+	.st154{fill:url(#SVGID_145_);}
+	.st155{fill:url(#SVGID_146_);}
+	.st156{fill:url(#SVGID_147_);}
+	.st157{fill:url(#SVGID_148_);}
+	.st158{fill:url(#SVGID_149_);}
+	.st159{fill:url(#SVGID_150_);}
+	.st160{fill:url(#SVGID_151_);}
+	.st161{fill:url(#SVGID_152_);}
+	.st162{fill:url(#SVGID_153_);}
+	.st163{fill:url(#SVGID_154_);}
+	.st164{fill:url(#SVGID_155_);}
+	.st165{fill:url(#SVGID_156_);}
+	.st166{fill:url(#SVGID_157_);}
+	.st167{fill:url(#SVGID_158_);}
+	.st168{fill:url(#SVGID_159_);}
+	.st169{fill:url(#SVGID_160_);}
+	.st170{fill:url(#SVGID_161_);}
+	.st171{fill:url(#SVGID_162_);}
+	.st172{fill:url(#SVGID_163_);}
+	.st173{fill:url(#SVGID_164_);}
+	.st174{fill:url(#SVGID_165_);}
+	.st175{fill:url(#SVGID_166_);}
+	.st176{fill:url(#SVGID_167_);}
+	.st177{fill:url(#SVGID_168_);}
+	.st178{fill:url(#SVGID_169_);}
+	.st179{fill:url(#SVGID_170_);}
+	.st180{fill:url(#SVGID_171_);}
+	.st181{fill:url(#SVGID_172_);}
+	.st182{fill:url(#SVGID_173_);}
+	.st183{fill:url(#SVGID_174_);}
+	.st184{fill:url(#SVGID_175_);}
+	.st185{fill:url(#SVGID_176_);}
+	.st186{fill:url(#SVGID_177_);}
+	.st187{fill:url(#SVGID_178_);}
+	.st188{fill:url(#SVGID_179_);}
+	.st189{fill:#FFFFFF;stroke:url(#SVGID_180_);stroke-miterlimit:10;}
+	.st190{fill:url(#SVGID_181_);}
+	.st191{fill:url(#SVGID_182_);}
+	.st192{fill:url(#SVGID_183_);}
+	.st193{fill:url(#SVGID_184_);}
+	.st194{fill:url(#SVGID_185_);}
+	.st195{fill:url(#SVGID_186_);}
+	.st196{fill:url(#SVGID_187_);}
+	.st197{fill:url(#SVGID_188_);}
+	.st198{fill:url(#SVGID_189_);}
+	.st199{fill:url(#SVGID_190_);}
+	.st200{fill:url(#SVGID_191_);}
+	.st201{fill:url(#SVGID_192_);}
+	.st202{fill:url(#SVGID_193_);}
+	.st203{fill:url(#SVGID_194_);}
+	.st204{fill:url(#SVGID_195_);}
+	.st205{fill:url(#SVGID_196_);}
+	.st206{fill:url(#SVGID_197_);}
+	.st207{fill:url(#SVGID_198_);}
+	.st208{fill:url(#SVGID_199_);}
+	.st209{fill:url(#SVGID_200_);}
+	.st210{fill:url(#SVGID_201_);}
+	.st211{fill:url(#SVGID_202_);}
+	.st212{fill:url(#SVGID_203_);}
+</style>
+<g>
+	<g>
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-11.5121" y1="110.6842" x2="308.4879" y2="-26.3158">
+			<stop  offset="0" style="stop-color:#CB8A2C"/>
+			<stop  offset="5.911693e-02" style="stop-color:#D19945"/>
+			<stop  offset="0.2977" style="stop-color:#E9D1A4"/>
+			<stop  offset="0.405" style="stop-color:#F3E7CA"/>
+			<stop  offset="0.4771" style="stop-color:#F1E3C3"/>
+			<stop  offset="0.5821" style="stop-color:#EDD7B0"/>
+			<stop  offset="0.7072" style="stop-color:#E6C590"/>
+			<stop  offset="0.8478" style="stop-color:#DCAA63"/>
+			<stop  offset="1" style="stop-color:#CF892B"/>
+		</linearGradient>
+		<path style="fill:url(#SVGID_2_);" d="M210.1,27.5c0,3.8-0.7,7.3-2.2,10.6c-1.5,3.3-3.4,6.2-5.9,8.6c-2.5,2.5-5.3,4.4-8.7,5.8
+			c-3.3,1.4-6.9,2.1-10.6,2.1c-3.8,0-7.3-0.7-10.6-2.1c-3.3-1.4-6.2-3.4-8.6-5.8c-2.5-2.5-4.4-5.3-5.8-8.6
+			c-1.4-3.3-2.1-6.8-2.1-10.6c0-3.8,0.7-7.3,2.1-10.7c1.4-3.3,3.4-6.2,5.8-8.7c2.5-2.5,5.3-4.4,8.6-5.8c3.3-1.4,6.8-2.1,10.6-2.1
+			c3.7,0,7.3,0.7,10.6,2.1c3.3,1.4,6.2,3.4,8.7,5.8c2.5,2.5,4.4,5.4,5.9,8.7C209.4,20.2,210.1,23.7,210.1,27.5z M182.8,11.4
+			c-2.2,0-4.3,0.4-6.2,1.3c-1.9,0.9-3.6,2-5.1,3.5c-1.5,1.5-2.6,3.2-3.5,5.1c-0.9,1.9-1.3,4-1.3,6.2c0,2.2,0.4,4.3,1.3,6.2
+			c0.9,1.9,2,3.6,3.5,5.1c1.4,1.5,3.1,2.6,5.1,3.5c1.9,0.9,4,1.3,6.2,1.3c2.2,0,4.3-0.4,6.2-1.3c1.9-0.9,3.6-2,5.1-3.5
+			c1.5-1.4,2.6-3.1,3.4-5.1c0.8-1.9,1.3-4,1.3-6.2c0-2.2-0.4-4.3-1.3-6.2c-0.8-1.9-2-3.7-3.4-5.1c-1.4-1.5-3.1-2.6-5.1-3.5
+			C187.1,11.8,185,11.4,182.8,11.4z"/>
+		<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="-3.9405" y1="128.3696" x2="316.0594" y2="-8.6304">
+			<stop  offset="0" style="stop-color:#CB8A2C"/>
+			<stop  offset="5.911693e-02" style="stop-color:#D19945"/>
+			<stop  offset="0.2977" style="stop-color:#E9D1A4"/>
+			<stop  offset="0.405" style="stop-color:#F3E7CA"/>
+			<stop  offset="0.4771" style="stop-color:#F1E3C3"/>
+			<stop  offset="0.5821" style="stop-color:#EDD7B0"/>
+			<stop  offset="0.7072" style="stop-color:#E6C590"/>
+			<stop  offset="0.8478" style="stop-color:#DCAA63"/>
+			<stop  offset="1" style="stop-color:#CF892B"/>
+		</linearGradient>
+		<path style="fill:url(#SVGID_4_);" d="M259.7,54.1c-0.4,0.6-1.2,0.5-1.2,0.5h-1.8c0,0-8.1,0-13-4.8c-2.4-2.4-2.7-3.2-3.9-4.5
+			c-1-1.1-2.8-3.6-2.8-3.6l-4-5.7l-8.6,14l-2.6,3.8c0,0-0.4,0.6-0.6,0.7c-0.2,0.1-1,0.1-1,0.1h-5.4h-5.2c0,0-1.2,0-1.5-0.4
+			c-0.3-0.5,0.2-1.1,0.2-1.1l18-26.9c0,0-12.6-18.3-13.4-19c-0.5-0.5-3.1-3.6-4-4.2c-1.9-1.3-4.6-2.3-4.6-2.3s-0.2-0.1-0.2-0.3
+			c0.1-0.2,0.4-0.2,0.4-0.2h4.4h6.7c0,0,4.4,0.1,7,2.7c1.8,1.8,4.1,4.8,4.1,4.8l6.3,9.9l10.7-17.4h9.5c0,0,1.5,0,2.6,0
+			c0.5,0,0.7,0.3,0.8,0.5c0.1,0.5-1.6,3.2-1.6,3.2l-14.9,22.1l19.4,26.6C259.5,52.8,260.1,53.6,259.7,54.1z M216.2,54.7"/>
+		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="-19.5878" y1="91.8213" x2="300.4122" y2="-45.1787">
+			<stop  offset="0" style="stop-color:#CB8A2C"/>
+			<stop  offset="5.911693e-02" style="stop-color:#D19945"/>
+			<stop  offset="0.2977" style="stop-color:#E9D1A4"/>
+			<stop  offset="0.405" style="stop-color:#F3E7CA"/>
+			<stop  offset="0.4771" style="stop-color:#F1E3C3"/>
+			<stop  offset="0.5821" style="stop-color:#EDD7B0"/>
+			<stop  offset="0.7072" style="stop-color:#E6C590"/>
+			<stop  offset="0.8478" style="stop-color:#DCAA63"/>
+			<stop  offset="1" style="stop-color:#CF892B"/>
+		</linearGradient>
+		<path class="st1" d="M149.5,38.3c-0.7-0.3-0.6-0.3-1.6-0.7c-0.1,0-0.8-0.2-0.9-0.2c-0.9-0.1-2,0-3.2,0.5c-1.3,0.5-1.6,0.9-2.6,1.8
+			c-1,0.8-1.3,1-2.5,1.7c-2.4,1.4-5.1,2.1-8,2.1c-2.2,0-4.3-0.4-6.2-1.3c-1.9-0.9-3.6-2-5.1-3.4c-1.5-1.4-2.6-3.1-3.4-5.1
+			c-0.8-2-1.2-4-1.2-6.2c0-2.2,0.4-4.2,1.2-6.2c0.8-2,2-3.7,3.4-5.1c1.5-1.4,3.2-2.6,5.1-3.4c1.9-0.9,4-1.3,6.2-1.3
+			c2.9,0,5.6,0.7,8,2.1c1.2,0.7,1.6,0.9,2.5,1.7c1,0.8,1.3,1.2,2.6,1.8c1.1,0.5,2.3,0.6,3.2,0.5c0.1,0,0.8-0.2,0.9-0.2
+			c1-0.4,1-0.4,1.6-0.7c0.7-0.3,1.3-0.7,2-1.1c0.7-0.4,1.6-0.9,2.8-1.5c-1.2-2.1-2.5-3.9-4.2-5.6c-1.6-1.7-3.5-3.2-5.5-4.4
+			c-2-1.2-4.2-2.2-6.6-2.9c-2.4-0.7-4.8-1-7.4-1c-3.8,0-7.3,0.7-10.6,2.1c-3.3,1.4-6.2,3.4-8.7,5.9c-2.5,2.5-4.4,5.4-5.8,8.7
+			c-1.4,3.3-2.1,6.8-2.1,10.5c0,3.7,0.7,7.2,2.1,10.5c1.4,3.3,3.4,6.2,5.8,8.7c2.5,2.5,5.3,4.4,8.7,5.9c3.3,1.4,6.8,2.1,10.6,2.1
+			c2.6,0,5-0.3,7.4-1c2.4-0.7,4.6-1.6,6.6-2.9c2-1.2,3.9-2.7,5.5-4.4c1.6-1.7,3-3.6,4.2-5.6c-1.2-0.6-2.1-1.1-2.8-1.5
+			C150.8,39,150.2,38.6,149.5,38.3z"/>
+		<g>
+			<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="-37.1883" y1="50.7105" x2="282.8117" y2="-86.2895">
+				<stop  offset="0" style="stop-color:#CB8A2C"/>
+				<stop  offset="5.911693e-02" style="stop-color:#D19945"/>
+				<stop  offset="0.2977" style="stop-color:#E9D1A4"/>
+				<stop  offset="0.405" style="stop-color:#F3E7CA"/>
+				<stop  offset="0.4771" style="stop-color:#F1E3C3"/>
+				<stop  offset="0.5821" style="stop-color:#EDD7B0"/>
+				<stop  offset="0.7072" style="stop-color:#E6C590"/>
+				<stop  offset="0.8478" style="stop-color:#DCAA63"/>
+				<stop  offset="1" style="stop-color:#CF892B"/>
+			</linearGradient>
+			<path class="st4" d="M27.7,0.2l-26.9,0c0,0-0.4,0-0.5,0.1C0.1,0.6,0.3,0.7,0.4,1c1,1.5,1.7,3.3,1.7,5.3v47.3
+				c0,0.8,0.7,1.5,1.5,1.5h23.9c6.8,0,26.3-3.9,26.3-28.3C53.7,2.4,34.5,0.2,27.7,0.2 M22.9,47.5h-6.3V7.8h6.3
+				c11.2,0,15.2,5.7,15.2,18.9C38.1,40,33.3,47.5,22.9,47.5"/>
+		</g>
+		<linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="-19.814" y1="91.2929" x2="300.186" y2="-45.7071">
+			<stop  offset="0" style="stop-color:#CB8A2C"/>
+			<stop  offset="5.911693e-02" style="stop-color:#D19945"/>
+			<stop  offset="0.2977" style="stop-color:#E9D1A4"/>
+			<stop  offset="0.405" style="stop-color:#F3E7CA"/>
+			<stop  offset="0.4771" style="stop-color:#F1E3C3"/>
+			<stop  offset="0.5821" style="stop-color:#EDD7B0"/>
+			<stop  offset="0.7072" style="stop-color:#E6C590"/>
+			<stop  offset="0.8478" style="stop-color:#DCAA63"/>
+			<stop  offset="1" style="stop-color:#CF892B"/>
+		</linearGradient>
+		<path class="st6" d="M99.1,53.5c0,0.7-0.5,1.2-1.2,1.2h-39c-0.7,0-1.2-0.5-1.2-1.2V45c0-0.7,0.5-1.2,1.2-1.2h39
+			c0.7,0,1.2,0.5,1.2,1.2V53.5z"/>
+		<linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="-27.6318" y1="73.0324" x2="292.3682" y2="-63.9676">
+			<stop  offset="0" style="stop-color:#CB8A2C"/>
+			<stop  offset="5.911693e-02" style="stop-color:#D19945"/>
+			<stop  offset="0.2977" style="stop-color:#E9D1A4"/>
+			<stop  offset="0.405" style="stop-color:#F3E7CA"/>
+			<stop  offset="0.4771" style="stop-color:#F1E3C3"/>
+			<stop  offset="0.5821" style="stop-color:#EDD7B0"/>
+			<stop  offset="0.7072" style="stop-color:#E6C590"/>
+			<stop  offset="0.8478" style="stop-color:#DCAA63"/>
+			<stop  offset="1" style="stop-color:#CF892B"/>
+		</linearGradient>
+		<path class="st10" d="M99.1,31.9c0,0.7-0.5,1.2-1.2,1.2h-39c-0.7,0-1.2-0.5-1.2-1.2v-8.5c0-0.7,0.5-1.2,1.2-1.2h39
+			c0.7,0,1.2,0.5,1.2,1.2V31.9z"/>
+		<linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="-34.7028" y1="56.5161" x2="285.2972" y2="-80.4839">
+			<stop  offset="0" style="stop-color:#CB8A2C"/>
+			<stop  offset="5.911693e-02" style="stop-color:#D19945"/>
+			<stop  offset="0.2977" style="stop-color:#E9D1A4"/>
+			<stop  offset="0.405" style="stop-color:#F3E7CA"/>
+			<stop  offset="0.4771" style="stop-color:#F1E3C3"/>
+			<stop  offset="0.5821" style="stop-color:#EDD7B0"/>
+			<stop  offset="0.7072" style="stop-color:#E6C590"/>
+			<stop  offset="0.8478" style="stop-color:#DCAA63"/>
+			<stop  offset="1" style="stop-color:#CF892B"/>
+		</linearGradient>
+		<path class="st16" d="M99.5,9.8V2.7V2c0-0.8-0.6-1.4-1.4-1.4h-0.7H70.5c-0.4,0-0.7-0.1-1.1-0.1c-0.4,0-0.9,0-1.3,0.1
+			c-5.7,0.7-10,5.4-10,11.3c0,0,0,0,0,0h22.7c0,0,0,0,0,0l16.5,0v0H98c0,0,0.1,0,0.1,0c0.7-0.1,1.3-0.6,1.3-1.4c0,0,0-0.1,0-0.1
+			L99.5,9.8L99.5,9.8z"/>
+	</g>
+</g></symbol></svg>
+
+  <!-- ===== HEADER ===== -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(25,53,68,.96); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,.1);">
+    <div style="max-width:1200px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px;">
+      <a href="https://decoxdesign.com/bao-gia-du-an/" style="display:flex; align-items:center;">
+        <svg viewBox="0 0 260 55" role="img" aria-label="Decox" style="height:34px; width:161px; display:block;"><use href="#decoxLogo"/></svg>
+      </a>
+      <nav class="main-nav" style="display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500;">
+        <div class="nav-drop">
+          <a href="https://decoxdesign.com/bao-gia-du-an/" style="color:#d9e2e8; text-decoration:none;">Bảng giá ▾</a>
+          <div class="nav-drop-menu"><div class="nav-drop-card">
+            <a href="https://decoxdesign.com/bao-gia-du-an/nha-pho.html">Nhà phố, biệt thự</a>
+            <a href="https://decoxdesign.com/bao-gia-du-an/can-ho.html">Căn hộ, Duplex</a>
+          </div></div>
+        </div>
+        <a href="#quytrinh" style="color:#d9e2e8; text-decoration:none;">Quy trình tư vấn</a>
+        <a href="#camket" style="color:#d9e2e8; text-decoration:none;">Cam kết</a>
+        <a href="#duan-list" style="color:#d9e2e8; text-decoration:none;">Dự án</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="header-phone" href="tel:0901411489" data-tel style="display:flex; align-items:center; gap:7px; text-decoration:none; color:#fff;">
+          <span style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.13); display:flex; align-items:center; justify-content:center; color:#fff;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span data-phone style="font-weight:700; font-size:15px; letter-spacing:.3px;">0901 411 489</span>
+        </a>
+        <a href="#lienhe" style="background:#c9a15c; color:#193544; padding:11px 20px; border-radius:999px; font-size:14px; font-weight:700; text-decoration:none; white-space:nowrap;">Đặt lịch tư vấn</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section style="position:relative; background:linear-gradient(180deg,#193544 0%,#234a5c 100%); color:#ffffff; overflow:hidden;">
+    <div style="position:absolute; inset:0; background-image:url('https://decoxdesign.com/upload/images/bao-gia-town-house-05-decox-design.jpg'); background-size:cover; background-position:center; opacity:.20;"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(90deg,rgba(25,53,68,.92) 0%,rgba(25,53,68,.55) 60%,rgba(25,53,68,.35) 100%);"></div>
+    <div style="position:relative; max-width:1200px; margin:0 auto; padding:96px 24px 88px;">
+      <div style="max-width:820px; animation:floatIn .7s ease both;">
+        <span class="eyebrow" style="color:#d9bd93;">Tư vấn đồng hành</span>
+        <h1 class="hero-h1" style="font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:52px; font-weight:700; line-height:1.12; letter-spacing:-1px; margin:18px 0 22px;">Decox – Giải pháp tư vấn &amp; đồng hành toàn diện cho mọi công trình</h1>
+        <div class="rule" style="background:#c9a15c; margin-bottom:24px;"></div>
+        <p style="font-size:19px; line-height:1.75; color:#d5dfe4; max-width:720px;">Tối ưu hóa nguồn vốn đầu tư, bảo chứng chất lượng kỹ thuật, nâng tầm giá trị thẩm mỹ và cam kết tiến độ vận hành.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:34px;">
+          <a href="#lienhe" style="background:#c9a15c; color:#193544; padding:16px 34px; border-radius:999px; font-size:15px; font-weight:700; text-decoration:none;">Đặt lịch tư vấn miễn phí →</a>
+          <a href="#quytrinh" style="border:1.5px solid rgba(255,255,255,.45); color:#fff; padding:16px 34px; border-radius:999px; font-size:15px; font-weight:700; text-decoration:none;">Xem quy trình 5 bước</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4 GIÁ TRỊ ===== -->
+  <section style="background:#122a37; color:#fff;">
+    <div class="pillars" style="max-width:1200px; margin:0 auto; padding:14px 24px 22px; display:grid; grid-template-columns:repeat(4,1fr);">
+      <div class="pillar rv">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Tối ưu nguồn vốn</h3>
+        <p>Phân bổ tỷ trọng đầu tư hợp lý cho từng hạng mục, kiểm soát dòng tiền theo tiến độ.</p>
+      </div>
+      <div class="pillar rv">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Bảo chứng kỹ thuật</h3>
+        <p>Tiêu chuẩn vật liệu &amp; giải pháp kỹ thuật được chỉ định rõ ràng ngay từ đầu.</p>
+      </div>
+      <div class="pillar rv">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.4 5.6L20 11l-5.6 2.4L12 19l-2.4-5.6L4 11l5.6-2.4L12 3z"/></svg></div>
+        <h3>Nâng tầm thẩm mỹ</h3>
+        <p>Ngôn ngữ thiết kế độc bản, đồng điệu với gu thẩm mỹ và định vị của công trình.</p>
+      </div>
+      <div class="pillar rv">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+        <h3>Cam kết tiến độ</h3>
+        <p>Cột mốc kiểm soát rõ ràng, dự báo sớm điểm nghẽn và phương án ứng phó.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MÔ HÌNH ĐỒNG HÀNH & ĐỊNH HƯỚNG ===== -->
+  <section style="background:#ffffff;">
+    <div class="intro-grid" style="max-width:1200px; margin:0 auto; padding:88px 24px 76px; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div class="rv">
+        <span class="eyebrow">Triết lý làm việc</span>
+        <h2 class="section-h2" style="margin:16px 0 22px; color:#193544;">Mô hình<br>&ldquo;Đồng hành &amp; Định hướng&rdquo;</h2>
+        <div class="rule" style="margin-bottom:26px;"></div>
+        <p class="lead">Quy trình tư vấn tại Decox được vận hành theo mô hình <b style="color:#193544;">&ldquo;Đồng hành &amp; Định hướng&rdquo;</b>. Chúng tôi không chỉ cung cấp giải pháp thiết kế đơn thuần, mà còn trao cho chủ đầu tư một bức tranh toàn cảnh minh bạch, kiểm soát rủi ro từ giai đoạn chuẩn bị đầu tiên đến khi công trình hoàn thiện và đi vào vận hành.</p>
+      </div>
+      <div class="rv" style="position:relative;">
+        <div style="border-radius:22px; overflow:hidden; box-shadow:0 30px 70px -28px rgba(22,19,15,.55);">
+          <img src="https://decoxdesign.com/upload/sanpham/havora-villa.jpg" alt="Công trình Decox thiết kế và thi công thực tế" loading="lazy" style="width:100%; height:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+        </div>
+        <div class="stat-badge" style="position:absolute; left:-18px; bottom:-26px; background:#193544; color:#fff; border-radius:18px; padding:24px 28px; box-shadow:0 22px 46px -20px rgba(0,0,0,.55); max-width:280px;">
+          <div style="font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:38px; font-weight:700; color:#d9bd93; line-height:1;">15<span style="font-size:20px;">&nbsp;năm</span></div>
+          <p style="font-size:13.5px; color:#a9bcc5; line-height:1.6; margin-top:8px;">kinh nghiệm tư vấn, thiết kế &amp; thi công công trình tại Việt Nam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TỔNG QUAN 5 BƯỚC ===== -->
+  <section style="background:#faf8f4;">
+    <div style="max-width:1200px; margin:0 auto; padding:84px 24px 78px;">
+      <div style="text-align:center; margin-bottom:44px;" class="rv">
+        <span class="eyebrow">Lộ trình tư vấn</span>
+        <h2 class="section-h2" style="margin:14px auto 16px; color:#193544; max-width:760px;">5 bước đồng hành cùng chủ đầu tư</h2>
+        <p class="lead" style="max-width:620px; margin:0 auto;">Từ kế hoạch tổng thể đến khi chốt hợp đồng thi công — mỗi bước đều có mục tiêu, đầu ra và tiêu chí kiểm soát rõ ràng.</p>
+      </div>
+      <div class="ov-grid" style="display:grid; grid-template-columns:repeat(5,1fr); gap:18px;">
+        <a class="ov-card rv" href="#buoc-1"><div class="n">BƯỚC 01</div><h3>Lập kế hoạch tổng thể dự án</h3><p>Quản trị lộ trình, mốc tiến độ và rủi ro tiềm ẩn.</p></a>
+        <a class="ov-card rv" href="#buoc-2"><div class="n">BƯỚC 02</div><h3>Xác định mục tiêu dự án</h3><p>Cân bằng Chất lượng – Vận hành – Tài chính.</p></a>
+        <a class="ov-card rv" href="#buoc-3"><div class="n">BƯỚC 03</div><h3>Lập nhiệm vụ thiết kế</h3><p>Mặt bằng công năng tối ưu &amp; phong cách độc bản.</p></a>
+        <a class="ov-card rv" href="#buoc-4"><div class="n">BƯỚC 04</div><h3>Phân tích chi phí đầu tư</h3><p>Bóc tách BOQ, 3 phương án ngân sách, dòng tiền.</p></a>
+        <a class="ov-card rv" href="#buoc-5"><div class="n">BƯỚC 05</div><h3>Thẩm định báo giá thi công</h3><p>Rà soát nhà thầu, so sánh và hỗ trợ thương thảo.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHI TIẾT 5 BƯỚC ===== -->
+  <section id="quytrinh" style="background:#ffffff;">
+    <div style="max-width:1200px; margin:0 auto; padding:84px 24px 40px;">
+      <div class="steps-wrap">
+
+        <!-- Sticky nav -->
+        <aside class="steps-nav">
+          <div class="t">QUY TRÌNH TƯ VẤN</div>
+          <a href="#buoc-1" data-step="buoc-1"><i>01</i><span>Lập kế hoạch tổng thể dự án</span></a>
+          <a href="#buoc-2" data-step="buoc-2"><i>02</i><span>Xác định mục tiêu dự án</span></a>
+          <a href="#buoc-3" data-step="buoc-3"><i>03</i><span>Lập nhiệm vụ thiết kế</span></a>
+          <a href="#buoc-4" data-step="buoc-4"><i>04</i><span>Lập bảng phân tích chi phí đầu tư</span></a>
+          <a href="#buoc-5" data-step="buoc-5"><i>05</i><span>Thẩm định báo giá thi công</span></a>
+          <a href="#lienhe" style="border-left-color:transparent; margin-top:14px; color:#b3925e;"><i style="color:#b3925e;">→</i><span>Đặt lịch tư vấn</span></a>
+        </aside>
+
+        <!-- Nội dung -->
+        <div>
+
+          <!-- BƯỚC 1 -->
+          <article class="step rv" id="buoc-1">
+            <div class="step-head">
+              <div class="step-num">01</div>
+              <div>
+                <span class="step-kicker">BƯỚC 1</span>
+                <h3>Lập kế hoạch tổng thể dự án</h3>
+              </div>
+            </div>
+            <div class="goal">
+              <b>MỤC TIÊU</b>
+              <p>Quản trị toàn diện lộ trình, tối ưu hóa thời gian và kiểm soát chặt chẽ các mốc tiến độ then chốt.</p>
+            </div>
+            <div class="blk">
+              <h4>Lập tiến độ thi công tổng thể</h4>
+              <ul>
+                <li>Phân kỳ rõ ràng từng giai đoạn:
+                  <div class="flow" style="margin-top:12px;">
+                    <span>Ý tưởng</span><i>➔</i><span>Thiết kế</span><i>➔</i><span>Thủ tục pháp lý</span><i>➔</i><span>Lựa chọn nhà thầu</span><i>➔</i><span>Thi công</span><i>➔</i><span>Nghiệm thu &amp; Bàn giao</span>
+                  </div>
+                </li>
+                <li>Thiết lập các cột mốc kiểm soát chất lượng nhằm kiểm soát rủi ro trễ tiến độ.</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Xác định thẩm quyền &amp; Trách nhiệm</h4>
+              <ul>
+                <li>Phân định rõ phạm vi công việc giữa chủ đầu tư, nhà thầu và các đơn vị phối hợp, đảm bảo dự án vận hành trơn tru.</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Quản trị rủi ro chủ động</h4>
+              <ul>
+                <li>Dự báo sớm các <b>&ldquo;điểm nghẽn&rdquo;</b> tiềm ẩn (thủ tục cấp phép, chuỗi cung ứng vật tư) và chủ động đề xuất giải pháp ứng phó hiệu quả.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- BƯỚC 2 -->
+          <article class="step rv" id="buoc-2">
+            <div class="step-head">
+              <div class="step-num">02</div>
+              <div>
+                <span class="step-kicker">BƯỚC 2</span>
+                <h3>Xác định mục tiêu dự án</h3>
+              </div>
+            </div>
+            <div class="goal">
+              <b>MỤC TIÊU</b>
+              <p>Thiết lập &ldquo;kim chỉ nam&rdquo; cho công trình dựa trên sự cân bằng hoàn hảo giữa 3 yếu tố: Chất lượng – Vận hành – Tài chính.</p>
+            </div>
+            <div class="blk">
+              <h4>Thống nhất tiêu chuẩn hoàn thiện</h4>
+              <ul>
+                <li>Tư vấn phân khúc <b>(Tiêu chuẩn / Cao cấp / Sang trọng)</b> phù hợp với định vị công trình và mục đích sử dụng.</li>
+                <li>Định hướng giải pháp kỹ thuật, vật liệu xu hướng mới giúp công trình duy trì vẻ đẹp và độ bền vững vượt thời gian.</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Tối ưu hóa trải nghiệm &amp; Chi phí vận hành</h4>
+              <ul>
+                <li>Quy hoạch luồng di chuyển và phân bổ không gian sống khoa học, tối đa hóa tiện nghi sử dụng.</li>
+                <li>Tích hợp giải pháp tiết kiệm năng lượng, ưu tiên vật liệu dễ bảo trì để giảm thiểu chi phí vận hành lâu dài.</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Định mức đầu tư chiến lược</h4>
+              <ul>
+                <li>Lập bảng đầu tư tài chính khả thi theo đúng kỳ vọng và khả năng chi trả của chủ đầu tư.</li>
+                <li>Phân bổ tỷ trọng đầu tư tối ưu cho từng hạng mục: <b>Phần thô, Hệ thống MEP âm, Hoàn thiện, Nội thất và Thiết bị.</b></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- BƯỚC 3 -->
+          <article class="step rv" id="buoc-3">
+            <div class="step-head">
+              <div class="step-num">03</div>
+              <div>
+                <span class="step-kicker">BƯỚC 3</span>
+                <h3>Lập nhiệm vụ thiết kế</h3>
+              </div>
+            </div>
+            <div class="goal">
+              <b>MỤC TIÊU</b>
+              <p>Hiện thực hóa yêu cầu của chủ đầu tư thành phương án mặt bằng tối ưu và phong cách thiết kế độc bản.</p>
+            </div>
+            <div class="blk">
+              <h4>Quy hoạch mặt bằng công năng (2D)</h4>
+              <ul>
+                <li>Đề xuất các phương án phân chia mặt bằng nhằm khai thác tối đa diện tích không gian.</li>
+                <li>Phân tích đa chiều về ưu – nhược điểm dựa trên các tiêu chí: <b>thông gió, chiếu sáng tự nhiên, khí hậu, phong thủy và thói quen sinh hoạt.</b></li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Định hướng phong cách &amp; Vật liệu</h4>
+              <ul>
+                <li>Định hình ngôn ngữ thiết kế và tông màu chủ đạo đồng điệu với gu thẩm mỹ của chủ đầu tư.</li>
+                <li>Xây dựng bảng chỉ định vật liệu thực tế (đá, gỗ, vải, kim loại, hiệu ứng ánh sáng…), chốt phong cách chuẩn xác trước khi triển khai bản vẽ 3D.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- BƯỚC 4 -->
+          <article class="step rv" id="buoc-4">
+            <div class="step-head">
+              <div class="step-num">04</div>
+              <div>
+                <span class="step-kicker">BƯỚC 4</span>
+                <h3>Lập bảng phân tích chi phí đầu tư</h3>
+              </div>
+            </div>
+            <div class="goal">
+              <b>MỤC TIÊU</b>
+              <p>Minh bạch hóa bài toán tài chính, giúp chủ đầu tư chủ động dòng tiền và tối ưu hóa hiệu quả sử dụng vốn.</p>
+            </div>
+            <div class="blk">
+              <h4>Bóc tách dự toán chi tiết (BOQ)</h4>
+              <ul>
+                <li>Liệt kê minh bạch chi phí từng hạng mục: <b>Thiết kế, Phần thô, Hệ thống MEP, Hoàn thiện, Nội thất, Cảnh quan và Dự phòng phí.</b></li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Xây dựng ngân sách đầu tư đa dạng</h4>
+              <ul>
+                <li>Thiết lập 3 phương án tài chính linh hoạt để chủ đầu tư chủ động lựa chọn:
+                  <div class="budget">
+                    <div><div class="k">TIẾT KIỆM</div><div class="v">Tối ưu chi phí đầu tư ban đầu, đảm bảo công năng cốt lõi.</div></div>
+                    <div><div class="k">TRUNG CẤP</div><div class="v">Cân bằng giữa chi phí, thẩm mỹ và độ bền vật liệu.</div></div>
+                    <div><div class="k">CAO CẤP</div><div class="v">Vật liệu &amp; thiết bị cao cấp, tuổi thọ và trải nghiệm vượt trội.</div></div>
+                  </div>
+                </li>
+                <li>Lập bảng so sánh đối chiếu trực quan giữa <b>Chi phí đầu tư</b> so với <b>Giá trị sử dụng, Độ bền vật liệu</b> và <b>Khả năng tiết kiệm chi phí bảo trì.</b></li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Quản trị dòng tiền thông minh</h4>
+              <ul>
+                <li>Lập lộ trình giải ngân chi tiết theo từng đợt nghiệm thu thực tế, giúp chủ đầu tư luôn chủ động về nguồn vốn.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- BƯỚC 5 -->
+          <article class="step rv" id="buoc-5">
+            <div class="step-head">
+              <div class="step-num">05</div>
+              <div>
+                <span class="step-kicker">BƯỚC 5</span>
+                <h3>Thẩm định báo giá thi công</h3>
+              </div>
+            </div>
+            <div class="goal">
+              <b>MỤC TIÊU</b>
+              <p>Bảo vệ tối đa quyền lợi của chủ đầu tư, loại bỏ nguy cơ phát sinh chi phí ẩn hay rủi ro bất hợp lý từ phía nhà thầu.</p>
+            </div>
+            <div class="blk">
+              <h4>Thẩm định &amp; Rà soát hồ sơ nhà thầu</h4>
+              <ul>
+                <li>Kiểm tra tính chính xác của khối lượng, quy cách vật liệu và đơn giá trong hồ sơ báo giá; phát hiện và loại bỏ các khoản chi phí chồng chéo.</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Đánh giá &amp; So sánh khách quan</h4>
+              <ul>
+                <li>Lập bảng so sánh đối chiếu năng lực thi công thực tế và báo giá chi tiết của từng nhà thầu.</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Hỗ trợ thương thảo &amp; Chốt hợp đồng</h4>
+              <ul>
+                <li>Tư vấn rà soát chặt chẽ các điều khoản hợp đồng: <b>cam kết tiến độ, tiêu chuẩn kỹ thuật, chế tài thưởng phạt</b> và <b>quy trình nghiệm thu bàn giao.</b></li>
+              </ul>
+            </div>
+            <div style="margin-top:34px; background:#f6f2ea; border-radius:18px; padding:26px 30px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px;">
+              <div>
+                <div style="font-size:17px; font-weight:700; color:#193544; margin-bottom:6px;">Bạn đang chuẩn bị đầu tư một công trình?</div>
+                <p style="font-size:14.5px; color:#6a6355; line-height:1.6;">Decox tư vấn miễn phí lộ trình &amp; khung ngân sách phù hợp với dự án của bạn.</p>
+              </div>
+              <a href="#lienhe" style="background:#b3925e; color:#fff; padding:14px 30px; border-radius:999px; font-size:14.5px; font-weight:700; text-decoration:none; white-space:nowrap;">Đặt lịch tư vấn →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAM KẾT TỪ DECOX ===== -->
+  <section id="camket" style="position:relative; background:#193544; color:#fff; overflow:hidden;">
+    <div style="position:absolute; inset:0; background-image:url('https://decoxdesign.com/upload/sanpham/villa-del-sol.jpg'); background-size:cover; background-position:center; opacity:.12;"></div>
+    <div style="position:relative; max-width:1200px; margin:0 auto; padding:86px 24px;">
+      <div style="text-align:center; margin-bottom:46px;" class="rv">
+        <span class="eyebrow" style="color:#d9bd93;">Cam kết từ Decox</span>
+        <h2 class="section-h2" style="margin:14px auto 0; color:#fff; max-width:720px;">Đứng về phía chủ đầu tư, trong suốt hành trình</h2>
+      </div>
+      <div class="commit-grid">
+        <div class="commit-card rv">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Minh bạch tuyệt đối</h3>
+          <p>Mọi số liệu phân tích chi phí và định hướng vật liệu đều dựa trên dữ liệu thị trường thực tế và kinh nghiệm triển khai thực chiến.</p>
+        </div>
+        <div class="commit-card rv">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M7 21h10"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/></svg></div>
+          <h3>Tư vấn trung lập &amp; khách quan</h3>
+          <p>Decox đứng về phía chủ đầu tư, mọi đề xuất đều lấy hiệu quả và lợi ích lâu dài của chủ đầu tư làm trọng tâm.</p>
+        </div>
+        <div class="commit-card rv">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+          <h3>Đồng hành trọn vẹn</h3>
+          <p>Đảm bảo sự kết nối hoàn hảo giữa bản vẽ thiết kế và thực tế thi công tại công trình, đồng hành từ khi bàn giao sử dụng đến giai đoạn bảo hành hậu mãi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DỰ ÁN TIÊU BIỂU (TỰ CẬP NHẬT TỪ WEBSITE) ===== -->
+  <section id="duan-list" style="background:#ffffff;">
+    <div style="max-width:1200px; margin:0 auto; padding:88px 24px 90px;">
+      <div style="text-align:center; margin-bottom:14px;" class="rv"><span class="eyebrow">Công trình đã bàn giao</span></div>
+      <h2 class="section-h2 rv" style="text-align:center; margin-bottom:14px; color:#193544;">Một số dự án tiêu biểu của Decox</h2>
+      <p class="rv" style="text-align:center; color:#6a6355; max-width:580px; margin:0 auto 32px; font-size:16px; line-height:1.7;">Các công trình Decox đã tư vấn, thiết kế và thi công thực&nbsp;tế, cập nhật trực tiếp từ website. Bấm để xem chi tiết từng dự án.</p>
+
+      <div style="display:flex; justify-content:center; gap:10px; margin-bottom:36px; flex-wrap:wrap;">
+        <button class="filter-chip" data-filter="all">Tất cả</button>
+        <button class="filter-chip" data-filter="xaydung">Xây dựng</button>
+        <button class="filter-chip" data-filter="noithat">Nội thất</button>
+      </div>
+
+      <div id="projectsGrid" class="projects-grid"></div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="https://decoxdesign.com/thi-cong-noi-that" target="_blank" rel="noopener" style="display:inline-block; border:1.5px solid #d9c9ae; color:#8a6f43; padding:13px 32px; border-radius:999px; font-weight:700; font-size:15px; text-decoration:none;">Xem tất cả công trình →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORM LEAD ===== -->
+  <section id="lienhe" style="background:#e5ecef;">
+    <div style="max-width:1040px; margin:0 auto; padding:80px 24px;">
+      <div class="form-grid" style="background:#fff; border-radius:24px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; box-shadow:0 30px 60px -25px rgba(22,19,15,.35);">
+        <div style="padding:48px 44px; background:#193544; color:#ffffff; position:relative;">
+          <div style="position:absolute; inset:0; background-image:url('https://decoxdesign.com/upload/images/bao-gia-town-house-05-decox-design.jpg'); background-size:cover; background-position:center; opacity:.18;"></div>
+          <div style="position:relative;">
+            <span style="font-size:13px; font-weight:700; letter-spacing:2px; color:#d9bd93;">MIỄN PHÍ 100%</span>
+            <h2 style="font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:32px; font-weight:700; margin:14px 0 18px; color:#fff; line-height:1.18;">Đặt lịch tư vấn đồng hành cùng Decox</h2>
+            <p style="font-size:15px; color:#cabfae; line-height:1.65; margin-bottom:28px;">Để lại thông tin, chuyên gia Decox sẽ liên hệ trong vòng 24h để trao đổi về lộ trình, khung ngân sách và tiêu chuẩn hoàn thiện phù hợp với công trình của bạn.</p>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="display:flex; align-items:center; gap:12px;"><span style="width:40px; height:40px; border-radius:50%; background:rgba(179,146,94,.2); display:flex; align-items:center; justify-content:center; color:#d9bd93;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><div style="font-size:12px; color:#a89c88;">Hotline</div><div data-phone style="font-weight:700; font-size:17px; color:#fff;">0901 411 489</div></div></div>
+              <div style="display:flex; align-items:center; gap:12px;"><span style="width:40px; height:40px; border-radius:50%; background:rgba(179,146,94,.2); display:flex; align-items:center; justify-content:center; color:#d9bd93;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><div><div style="font-size:12px; color:#a89c88;">Email</div><div style="font-weight:700; font-size:17px; color:#fff;">support@decox.vn</div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:48px 44px;">
+          <form id="leadForm" style="display:flex; flex-direction:column; gap:16px;">
+            <div>
+              <label style="display:block; font-size:13px; font-weight:600; color:#57503f; margin-bottom:7px;">Họ và tên *</label>
+              <input id="fName" placeholder="Nguyễn Văn A" style="width:100%; padding:14px 16px; border-radius:12px; border:1px solid #d8cfbe; background:#faf8f4; font-size:15px; outline:none;">
+            </div>
+            <div>
+              <label style="display:block; font-size:13px; font-weight:600; color:#57503f; margin-bottom:7px;">Số điện thoại *</label>
+              <input id="fPhone" inputmode="tel" placeholder="09xx xxx xxx" style="width:100%; padding:14px 16px; border-radius:12px; border:1px solid #d8cfbe; background:#faf8f4; font-size:15px; outline:none;">
+            </div>
+            <div>
+              <label style="display:block; font-size:13px; font-weight:600; color:#57503f; margin-bottom:7px;">Thông tin công trình &amp; nhu cầu tư vấn</label>
+              <textarea id="fNeed" rows="5" placeholder="VD: Biệt thự 2 tầng 250m² tại Thủ Đức, cần tư vấn lộ trình đầu tư & thẩm định báo giá nhà thầu..." style="width:100%; padding:14px 16px; border-radius:12px; border:1px solid #d8cfbe; background:#faf8f4; font-size:14px; line-height:1.6; outline:none; resize:vertical;"></textarea>
+            </div>
+            <input id="fCompany" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+            <button type="submit" style="background:#b3925e; color:#fff; padding:16px; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer;">Gửi yêu cầu tư vấn →</button>
+            <p style="text-align:center; font-size:12px; color:#9a9082;">Bằng việc gửi, bạn đồng ý để Decox liên hệ tư vấn.</p>
+          </form>
+          <div id="leadThanks" style="display:none; text-align:center; padding:40px 0;">
+            <div style="width:72px; height:72px; border-radius:50%; background:#e8f0e6; color:#3f8a4f; display:flex; align-items:center; justify-content:center; font-size:36px; margin:0 auto 22px;">✓</div>
+            <h3 style="font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:26px; font-weight:700; margin-bottom:12px;">Cảm ơn bạn!</h3>
+            <p style="font-size:15px; color:#6a6355; line-height:1.6;">Decox đã nhận thông tin và sẽ liên hệ trong vòng 24h. Trong lúc chờ, bạn có thể tham khảo bảng giá tham chiếu:</p>
+            <a href="https://decoxdesign.com/bao-gia-du-an/" style="display:inline-block; margin-top:22px; background:#b3925e; color:#fff; padding:15px 34px; border-radius:12px; font-size:15px; font-weight:700; text-decoration:none;">Xem bảng giá dự án →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DECOX CONSULTING BAND ===== -->
+  <section style="background:#f2f2f3;">
+    <div class="consult-grid" style="max-width:1200px; margin:0 auto; padding:64px 24px; display:grid; grid-template-columns:1.15fr 1fr 1fr; gap:22px; align-items:stretch;">
+      <div style="border-radius:18px; overflow:hidden; background:linear-gradient(120deg,#122a3a 0%,#20407b 55%,#2f4fa0 100%); color:#fff; padding:34px 32px; display:flex; flex-direction:column; justify-content:space-between; min-height:250px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:20px;">
+            <svg viewBox="0 0 260 55" role="img" aria-label="Decox" style="height:22px; width:104px; display:block;"><use href="#decoxLogo"/></svg>
+            <span style="font-size:11px; letter-spacing:2px; color:#b9c6e6; text-transform:uppercase;">consulting</span>
+          </div>
+          <span style="display:inline-block; border:1px solid rgba(255,255,255,.35); border-radius:8px; padding:7px 14px; font-size:12.5px; font-weight:600; margin-bottom:22px;">Design &amp; Build Planning</span>
+          <h3 style="font-size:26px; font-weight:800; line-height:1.2;">Lập kế hoạch cho ngôi nhà của bạn ngay hôm nay</h3>
+        </div>
+        <a href="https://www.facebook.com/Decoxdesign/" target="_blank" rel="noopener" style="color:#dfe6f5; font-size:14px; font-weight:600; text-decoration:none; margin-top:22px; display:inline-flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Trò chuyện cùng chúng tôi →</a>
+      </div>
+      <div style="background:#fff; border:1px solid rgba(25,53,68,.1); border-radius:18px; padding:34px 30px; display:flex; flex-direction:column;">
+        <h3 style="font-size:22px; font-weight:800; color:#193544; margin-bottom:16px;">Về Decox</h3>
+        <p style="font-size:14.5px; line-height:1.65; color:#5a5347; flex:1;">Gần 15 năm kinh nghiệm trong lĩnh vực thiết kế kiến trúc nội thất tại Việt Nam, Decox mang đến những giá trị sống mới, chuẩn mực mới, hãy để chúng tôi mang đến giá trị tinh thần và sự bền vững cho cuộc sống của bạn. Tìm hiểu về Decox tại đây.</p>
+        <a href="https://decoxdesign.com/cong-ty-thiet-ke-noi-that" target="_blank" rel="noopener" style="align-self:center; margin-top:24px; border:1.5px solid #193544; color:#193544; padding:13px 40px; border-radius:8px; font-size:13px; font-weight:700; letter-spacing:1px; text-decoration:none;">XEM NGAY</a>
+      </div>
+      <div style="background:#fff; border:1px solid rgba(25,53,68,.1); border-radius:18px; padding:34px 30px; display:flex; flex-direction:column;">
+        <h3 style="font-size:22px; font-weight:800; color:#193544; margin-bottom:16px;">Quản lý dự án</h3>
+        <p style="font-size:14.5px; line-height:1.65; color:#5a5347; flex:1;">Một sản phẩm đẹp cần nhiều thời gian để thực hiện, và còn cần thêm hàng chục những bàn tay nhân sự tham gia vào quá trình xây dựng và phát triển, hãy cùng tìm hiểu nhé.</p>
+        <a href="https://decoxdesign.com/quan-ly-du-an-xay-dung" target="_blank" rel="noopener" style="align-self:center; margin-top:24px; border:1.5px solid #193544; color:#193544; padding:13px 40px; border-radius:8px; font-size:13px; font-weight:700; letter-spacing:1px; text-decoration:none;">XEM THÊM</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:#193544; color:#a89c88;">
+    <div style="max-width:1200px; margin:0 auto; padding:48px 24px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; align-items:center;">
+      <div>
+        <svg viewBox="0 0 260 55" role="img" aria-label="Decox" style="height:30px; width:142px; display:block;"><use href="#decoxLogo"/></svg>
+        <p style="font-size:13px; margin-top:12px; max-width:360px; line-height:1.6;">Công ty cổ phần Decox — gần 15 năm thiết kế &amp; thi công kiến trúc, nội thất tại Việt Nam.</p>
+      </div>
+      <div style="font-size:13px; line-height:1.8;">
+        <div>VPGD: 20 Nguyễn Thiện Thành, P. An Khánh, TP.HCM</div>
+        <div>Hotline: <b data-phone style="color:#fff;">0901 411 489</b> · support@decox.vn</div>
+        <div style="margin-top:8px; color:#6a6355;">© Decox 2013–2026</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING CTA ===== -->
+  <div style="position:fixed; right:20px; bottom:22px; z-index:60; display:flex; flex-direction:column; align-items:center; gap:14px;">
+    <div class="hotline-wrap">
+      <span class="hotline-tip">0901.411.489</span>
+      <a href="tel:0901411489" data-tel aria-label="Gọi hotline" style="width:58px; height:58px; border-radius:50%; background:#ffffff; border:1.5px solid #193544; color:#193544; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 6px 18px rgba(25,53,68,.18); animation:pulseGold 2.4s infinite;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+    </div>
+    <a href="https://zalo.me/0901411489" target="_blank" rel="noopener" aria-label="Chat Zalo" style="width:58px; height:58px; border-radius:50%; background:#ffffff; border:1.5px solid #193544; color:#193544; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; letter-spacing:.3px; text-decoration:none; box-shadow:0 6px 18px rgba(25,53,68,.18);">Zalo</a>
+    <button id="scrollTop" aria-label="Lên đầu trang" style="width:58px; height:58px; border-radius:50%; background:#ffffff; border:1.5px solid #193544; color:#193544; display:none; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 6px 18px rgba(25,53,68,.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var PHONE = '0901 411 489';
+  var $ = function(id){ return document.getElementById(id); };
+  var telHref = 'tel:' + PHONE.replace(/\s/g,'');
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tel]'), function(el){ el.setAttribute('href', telHref); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-phone]'), function(el){ el.textContent = PHONE; });
+
+  // ---- Hotline tooltip: reveal number on click/tap ----
+  var hotlineWrap = document.querySelector('.hotline-wrap');
+  if (hotlineWrap){
+    var tip = hotlineWrap.querySelector('.hotline-tip');
+    hotlineWrap.addEventListener('click', function(){ tip.classList.add('tip-open'); setTimeout(function(){ tip.classList.remove('tip-open'); }, 2600); });
+  }
+
+  // ---- Reveal on scroll ----
+  var rvs = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window){
+    var rvIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('in'); rvIO.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    Array.prototype.forEach.call(rvs, function(el, i){ el.style.transitionDelay = (Math.min(i % 5, 4) * 60) + 'ms'; rvIO.observe(el); });
+  } else {
+    Array.prototype.forEach.call(rvs, function(el){ el.classList.add('in'); });
+  }
+
+  // ---- Scroll-spy cho thanh điều hướng 5 bước ----
+  var navLinks = document.querySelectorAll('.steps-nav a[data-step]');
+  var steps = document.querySelectorAll('.step');
+  function setActive(id){
+    Array.prototype.forEach.call(navLinks, function(a){
+      a.classList.toggle('on', a.getAttribute('data-step') === id);
+    });
+  }
+  if (steps.length && 'IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) setActive(en.target.id); });
+    }, { rootMargin: '-120px 0px -55% 0px', threshold: 0 });
+    Array.prototype.forEach.call(steps, function(s){ spy.observe(s); });
+    setActive('buoc-1');
+  }
+
+  // ---- Scroll to top ----
+  var scrollTopBtn = $('scrollTop');
+  function toggleScrollTop(){
+    scrollTopBtn.style.display = (window.pageYOffset || document.documentElement.scrollTop) > 400 ? 'flex' : 'none';
+  }
+  window.addEventListener('scroll', toggleScrollTop, { passive: true });
+  scrollTopBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  toggleScrollTop();
+
+  // ---- Dự án tiêu biểu: lấy tự động mới nhất từ decoxdesign.com ----
+  var SITE = 'https://decoxdesign.com/';
+  var CAT_LABEL = { xaydung:'Xây dựng', noithat:'Nội thất' };
+  var PROJECTS = [];
+  var state = { filter: 'all' };
+
+  function chipStyle(active){
+    return active
+      ? 'padding:9px 20px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid #193544;background:#193544;color:#fff;'
+      : 'padding:9px 20px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid #d8cfbe;background:#fff;color:#2b2620;';
+  }
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
+    });
+  }
+  function renderProjects(){
+    Array.prototype.forEach.call(document.querySelectorAll('.filter-chip'), function(btn){
+      btn.setAttribute('style', chipStyle(btn.getAttribute('data-filter') === state.filter));
+    });
+    var list = state.filter === 'all' ? PROJECTS : PROJECTS.filter(function(p){ return (p.cats||[]).indexOf(state.filter) > -1; });
+    var html = list.map(function(item){
+      var tag = (item.cats||[]).map(function(c){ return CAT_LABEL[c] || c; }).join(' · ') || 'Thi công thực tế';
+      return '<a class="proj-card" href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener">'
+        + '<div style="aspect-ratio:4/3; background:#dbe2e7; overflow:hidden;">'
+        + '<img src="' + escapeHtml(item.img) + '" alt="' + escapeHtml(item.name) + '" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">'
+        + '</div>'
+        + '<div style="padding:18px 20px;">'
+        + '<div style="font-size:12px; font-weight:700; letter-spacing:.4px; color:#c9a15c; margin-bottom:6px;">' + escapeHtml(tag) + '</div>'
+        + '<h3 style="font-size:17px; font-weight:700; color:#193544;">' + escapeHtml(item.name) + '</h3>'
+        + '</div></a>';
+    }).join('');
+    $('projectsGrid').innerHTML = html || '<div style="grid-column:1/-1; text-align:center; color:#9a9186; padding:24px 0;">Đang cập nhật dự án…</div>';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.filter-chip'), function(btn){
+    btn.addEventListener('click', function(){ state.filter = btn.getAttribute('data-filter'); renderProjects(); });
+  });
+  renderProjects();
+
+  (function(){
+    function abs(u){ try{ return new URL(u, SITE).href; }catch(e){ return u; } }
+    function keyOf(s){ return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[đĐ]/g,'d').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+    function parseNoiThat(html){
+      var doc=new DOMParser().parseFromString(html,'text/html'), out=[];
+      Array.prototype.forEach.call(doc.querySelectorAll('li.item a[href], .item a[href]'), function(a){
+        var img=a.querySelector('img'); if(!img) return;
+        var href=a.getAttribute('href'); if(!href || !/\.html($|\?)/.test(href)) return;
+        var src=img.getAttribute('src')||img.getAttribute('data-src')||img.getAttribute('data-original');
+        var title=(img.getAttribute('alt')||'').trim();
+        if(!src || !title) return;
+        out.push({ name:title, url:abs(href), img:abs(src), cat:'noithat' });
+      });
+      return out;
+    }
+    var XD_HREF_FIX = {
+      'ricky-villa':'rickys-villa.html', 'ricky-s-villa':'rickys-villa.html',
+      'h-h-townhouse-thanh-my-loi':'hh-townhouse-thanh-my-loi.html',
+      'villa-tay-ninh-hinh-anh-thuc-te':'villa-tay-ninh.html',
+      'binh-tan-townhouse-hinh-anh-thuc-te':'thi-cong-kien-truc-noi-that-binh-tan-townhouse.html',
+      'sofitel-villa':'sofitel-villa-hinh-anh-thuc-te.html',
+      'elegant-villa-hinh-anh-thuc-te':'thi-cong-kien-truc-noi-that-biet-thu-elegant-villa.html'
+    };
+    var XD_SKIP = { 'can-ho-dich-vu-kimmy-house':1 };
+    function parseXayDung(html){
+      var doc=new DOMParser().parseFromString(html,'text/html'), map={}, order=[];
+      Array.prototype.forEach.call(doc.querySelectorAll('a[href*="upload/sanpham/large/"]'), function(a){
+        var m=(a.getAttribute('href')||'').match(/large\/([a-z0-9\-]+?)(?:-\d+)?\.(?:jpg|jpeg|png)/i); if(!m) return;
+        var sl=m[1]; if(XD_SKIP[sl] || map[sl]) return;
+        var title=(a.getAttribute('title')||a.getAttribute('alt')||'').trim(); if(!title) return;
+        map[sl]={ name:title, url:SITE+(XD_HREF_FIX[sl]||(sl+'.html')), img:SITE+'upload/sanpham/large/'+sl+'.jpg', cat:'xaydung' };
+        order.push(sl);
+      });
+      return order.map(function(k){ return map[k]; });
+    }
+    var EXCLUDE={'ha-noi-westlake-villa':1,'townhouse-phu-my-hung':1,'ricky-villa':1};
+    function interleave(arr){
+      var xd=[], nt=[];
+      arr.forEach(function(p){ ((p.cats||[]).indexOf('noithat')>-1 ? nt : xd).push(p); });
+      var out=[], i=0, j=0;
+      while(i<nt.length || j<xd.length){ if(i<nt.length) out.push(nt[i++]); if(j<xd.length) out.push(xd[j++]); }
+      return out;
+    }
+    function merge(lists){
+      var by={}, order=[];
+      lists.forEach(function(arr){ (arr||[]).forEach(function(p){
+        var k=keyOf(p.name);
+        if(EXCLUDE[k]) return;
+        if(!by[k]){ by[k]={ name:p.name, url:p.url, img:p.img, cats:[] }; order.push(k); }
+        if(by[k].cats.indexOf(p.cat)<0) by[k].cats.push(p.cat);
+        if(p.cat==='noithat'){ by[k].url=p.url; by[k].img=p.img; }
+      }); });
+      return order.map(function(k){ return by[k]; });
+    }
+    Promise.allSettled([
+      fetch(SITE+'thi-cong-xay-dung',{mode:'cors'}).then(function(r){ return r.ok?r.text():''; }).then(parseXayDung),
+      fetch(SITE+'thi-cong-noi-that',{mode:'cors'}).then(function(r){ return r.ok?r.text():''; }).then(parseNoiThat)
+    ]).then(function(res){
+      var xd=(res[0]&&res[0].value)||[], nt=(res[1]&&res[1].value)||[];
+      var merged=interleave(merge([xd, nt]));
+      if(merged.length){ PROJECTS=merged; renderProjects(); }
+    });
+  })();
+
+  // ---- Lead form → Lark Sheet (qua Apps Script relay) ----
+  var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxiLOOCCQnTcA_mMMq-dp-t4tiPRQCO8gzgt0KAaA5j2G55CKS8bTzmCV41e2bnwCaE2Q/exec';
+  function sendLead(payload){
+    if (!LEAD_ENDPOINT) return;
+    var body = JSON.stringify(payload);
+    try {
+      var blob = new Blob([body], { type: 'text/plain;charset=UTF-8' });
+      if (navigator.sendBeacon && navigator.sendBeacon(LEAD_ENDPOINT, blob)) return;
+    } catch (err) {}
+    try {
+      fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', keepalive: true,
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: body })['catch'](function(){});
+    } catch (err) {}
+  }
+  $('leadForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var phone = $('fPhone').value.trim();
+    if (!phone) { $('fPhone').focus(); return; }
+    if ($('fCompany').value) { return; }   // honeypot
+    sendLead({
+      type: 'website',
+      Ten: $('fName').value.trim(),
+      Dienthoai: phone,
+      Noidung: $('fNeed').value.trim(),
+      Nguon: 'Tư vấn đồng hành'
+    });
+    $('leadForm').style.display = 'none';
+    $('leadThanks').style.display = 'block';
+  });
+
+})();
+</script>
+</body>
+</html>
