@@ -95,6 +95,12 @@
   .flow { display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin:4px 0 4px; }
   .flow span { background:#fff; border:1px solid #e2d8c6; border-radius:999px; padding:9px 16px; font-size:13px; font-weight:700; color:#193544; white-space:nowrap; }
   .flow i { font-style:normal; color:#c9a15c; font-weight:700; }
+  /* Man hinh hep: doi thanh chuoi doc de doc lien tuc theo tung giai doan */
+  @media (max-width:760px){
+    .flow { flex-direction:column; align-items:flex-start; gap:0; margin:10px 0 6px; }
+    .flow span { width:100%; text-align:center; padding:11px 16px; white-space:normal; }
+    .flow i { display:block; line-height:1; padding:5px 0; margin-left:calc(50% - 6px); transform:rotate(90deg); font-size:15px; }
+  }
 
   /* Ngân sách 3 phương án */
   .budget { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px; }
@@ -561,7 +567,7 @@
       </div>
       <div class="rv" style="position:relative;">
         <div style="border-radius:22px; overflow:hidden; box-shadow:0 30px 70px -28px rgba(22,19,15,.55);">
-          <img src="https://decoxdesign.com/upload/sanpham/havora-villa.jpg" alt="Công trình Decox thiết kế và thi công thực tế" loading="lazy" style="width:100%; height:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+          <img src="https://decoxdesign.com/upload/sanpham/havora-villa.jpg" alt="Công trình Decox thiết kế và thi công thực tế" loading="lazy" style="width:100%; height:100%; aspect-ratio:3/2; object-fit:cover; object-position:center 10%; display:block;">
         </div>
         <div class="stat-badge" style="position:absolute; left:-18px; bottom:-26px; background:#193544; color:#fff; border-radius:18px; padding:24px 28px; box-shadow:0 22px 46px -20px rgba(0,0,0,.55); max-width:280px;">
           <div style="font-family:'Gotham','Montserrat','Be Vietnam Pro',sans-serif; font-size:38px; font-weight:700; color:#d9bd93; line-height:1;">15<span style="font-size:20px;">&nbsp;năm</span></div>
