@@ -92,11 +92,11 @@
   .blk li b, .blk li strong { color:#193544; font-weight:700; }
 
   /* Flow chips (phân kỳ giai đoạn) */
-  .flow { display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin:4px 0 4px; }
-  .flow span { background:#fff; border:1px solid #e2d8c6; border-radius:999px; padding:9px 16px; font-size:13px; font-weight:700; color:#193544; white-space:nowrap; }
-  .flow i { font-style:normal; color:#c9a15c; font-weight:700; }
-  /* Man hinh hep: doi thanh chuoi doc de doc lien tuc theo tung giai doan */
-  @media (max-width:760px){
+  .flow { display:flex; flex-wrap:nowrap; align-items:center; gap:7px; margin:6px 0 4px; }
+  .flow span { background:#fff; border:1px solid #e2d8c6; border-radius:999px; padding:8px 13px; font-size:12.5px; font-weight:700; color:#193544; white-space:nowrap; }
+  .flow i { font-style:normal; color:#c9a15c; font-weight:700; font-size:13px; flex-shrink:0; }
+  /* Man hinh chua du rong cho 1 hang: doi thanh chuoi doc de doc lien tuc theo tung giai doan */
+  @media (max-width:1150px){
     .flow { flex-direction:column; align-items:flex-start; gap:0; margin:10px 0 6px; }
     .flow span { width:100%; text-align:center; padding:11px 16px; white-space:normal; }
     .flow i { display:block; line-height:1; padding:5px 0; margin-left:calc(50% - 6px); transform:rotate(90deg); font-size:15px; }
